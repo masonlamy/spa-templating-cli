@@ -36,6 +36,18 @@ else if (argv.c) {
         return;
     }
 }
+else if (argv.r) {
+    try {
+        template = libs.templateReducer(argv.r);
+        templateTests = libs.templateReducerTests(argv.r);
+        filename = argv.r.toLowerCase().concat('Reducer').concat('.js');
+        filenameTests = argv.r.toLowerCase().concat('Reducer.test.js');
+    }
+    catch (err) {
+        console.log(err.toString().red);
+        return;
+    }
+}
 else {
     return;
 }
