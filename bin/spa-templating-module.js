@@ -49,29 +49,42 @@ else if (argv.r) {
     }
 }
 else {
+    console.log('');
+    console.log('Usage: spa <command>');
+    console.log('');
+    console.log('');
+    console.log('Where <command> can be:');
+    console.log('-p [name] : scaffold presentational component [name].js and test file [name].test.js');
+    console.log('-c [name] : scaffold container component [name]Container.js and test file [name]Container.test.js');
+    console.log('-r [name] : scaffold reducer [name]Reducer.js and test file [name]Reducer.test.js');
+    console.log('');
+    console.log('');
+    console.log('Optional argument -t to only create the test file');
+    console.log('');
+    console.log('');
     return;
 }
 
-console.log('Creating file '.concat(filename).concat('...'));
-
-fs.open(filename, 'r', function(err, fd) {
-    if (err) {
-        fs.writeFile(filename, template, function(err){
-            if (err) {
-                console.error(err.toString().red);
-            }
-            else {
-                console.log('Successful'.green);
-            }
-        });
-    }
-    else {
-        console.error('File already exists!'.red);
-    }
-});
+if (!argv.t) {
+    console.log('Creating file '.concat(filename).concat('...'));
+    fs.open(filename, 'r', function(err, fd) {
+        if (err) {
+            fs.writeFile(filename, template, function(err){
+                if (err) {
+                    console.error(err.toString().red);
+                }
+                else {
+                    console.log('Successful'.green);
+                }
+            });
+        }
+        else {
+            console.error('File already exists!'.red);
+        }
+    });
+}
 
 console.log('Creating file '.concat(filenameTests).concat('...'));
-
 fs.open(filename, 'r', function(err, fd) {
     if (err) {
         fs.writeFile(filenameTests, templateTests, function(err){
