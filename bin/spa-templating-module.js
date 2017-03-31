@@ -6,11 +6,18 @@ const libs = require(path.join('../lib'));
 const argv = require('yargs').argv;
 const colors = require('colors');
 
-var filename;
-var template;
+let filename;
+let template;
 
-var templateTests;
-var filenameTests;
+let templateTests;
+let filenameTests;
+
+if (argv._ && argv._.indexOf('ng') !== -1) {
+    console.log('welcome to the angular world....');
+    const { handleAngularTemplating } = require('../lib/templates/angular/angular');
+    handleAngularTemplating();
+    return;
+}
 
 if (argv.p) {
     try {
